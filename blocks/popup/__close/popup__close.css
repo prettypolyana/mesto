@@ -3,6 +3,7 @@
     border: none;
     position: absolute;
     background-size: contain;
+    padding: 0;
     width: 32px;
     height: 32px;
     right: -40px;

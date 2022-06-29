@@ -1,8 +1,9 @@
 .profile__btn {
-    background: url(../../../images/edit-button.png) no-repeat;
+    background: url(../../../images/edit-button.svg) no-repeat;
     display: block;
     width: 24px;
     height: 24px;
+    padding: 0;
     border: none;
     cursor: pointer;
     transition: opacity 0.4s ease;
