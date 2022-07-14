@@ -26,64 +26,49 @@
                 <button class="profile__btn-plus" type="button"></button>
             </section>
             <section class="elements content__elements">
-                <ul class="elements__list">
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/Rostov-on-Don.jpg" alt="Рядом со знаком Я Люблю Ростов-на-Дону">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Ростов-на-Дону</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/Sudak.jpg" alt="На фоне Генуэзской крепости">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Судак</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/Dubna.jpg" alt="'Следуй за мной' на фоне Волги">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Дубна</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/Zelenograd.jpg" alt="На фоне многоэтажек">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Зеленоград</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/VU.jpg" alt="В снегу на фоне застывшей Сухоны">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Великий Устюг</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img class="elements__photo" src="./images/Obninsk.jpg" alt="На фоне стелы">
-                        <div class="elements__info">
-                            <h2 class="elements__name">Обнинск</h2>
-                            <button class="elements__btn" type="button"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="elements__list"></ul>
             </section>
         </main>
         <footer class="footer page__footer">
             <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup__profile">
             <div class="popup__container">
-                <button class="popup__close" type="button"></button>
-                <form class="popup__content">
+                <button class="popup__close popup__close-profile" type="button"></button>
+                <form class="popup__content popup__content-profile">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <input class="popup__input popup__name" type="text" name="popup-name" placeholder="Введите имя">
                     <input class="popup__input popup__job" type="text" name="popup-job" placeholder="Введите вид деятельности">
                     <button class="popup__btn" type="submit">Сохранить</button>
                 </form>
+            </div>
+        </div>
+        <div class="popup popup__add-card">
+            <div class="popup__container">
+                <button class="popup__close popup__close-card" type="button"></button>
+                <form class="popup__content popup__content-card">
+                    <h2 class="popup__title">Новое место</h2>
+                    <input class="popup__input popup__card-name" type="text" name="popup-card-name" placeholder="Название">
+                    <input class="popup__input popup__link" type="text" name="popup-link" placeholder="Ссылка на картинку">
+                    <button class=" popup__btn" type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+        <template class="card-template">
+            <li class="elements__card">
+                <img class="elements__photo" src="" alt="">
+                <button class="elements__trash"></button>
+                <div class="elements__info">
+                    <h2 class="elements__name"></h2>
+                    <button class="elements__btn" type="button"></button>
+                </div>
+            </li>
+        </template>
+        <div class="popup popup__show-image">
+            <div class="popup__container popup__container_image">
+                <button class="popup__close popup__close-image" type="button"></button>
+                <img class="popup__image">
+                <div class="popup__desc"></div>
             </div>
         </div>
     </div>
