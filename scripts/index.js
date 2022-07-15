@@ -26,9 +26,6 @@ const popupDescElement = document.querySelector('.popup__desc');
 const popupImage = document.querySelector('.popup__image');
 const popupImageClose = document.querySelector('.popup__close-image');
 
-popupImageClose.addEventListener('click', closePopupImage);
-
-
 function openPopupProfile() {
     popupProfileElement.classList.add('popup_opened');
     nameInput.value = profileNameElement.textContent;
@@ -64,18 +61,11 @@ function closePopupAddCard() {
     popupAddCardElement.classList.remove('popup_opened');
 }
 
-addCardButton.addEventListener('click', openPopupAddCard);
-popupAddCardCloseButton.addEventListener('click', closePopupAddCard);
-
-function addCardSubmitHandler (evt) {
-    evt.preventDefault();
-
-    addCard(cardNameInput.value, cardLinkInput.value);
-
-    closePopupAddCard();
-} 
-
-formCardElement.addEventListener('submit', addCardSubmitHandler); 
+function openPopupImage(event) {
+    popupShowImageElement.classList.add('popup_opened');
+    popupImage.src = event.target.src;
+    popupDescElement.textContent = event.target.alt;
+}
 
 function likePhoto(event) {
     event.target.classList.toggle('elements__btn_active');
@@ -103,6 +93,25 @@ function addCard(name, link) {
    
     cardList.prepend(cardElement);
 }
+
+addCardButton.addEventListener('click', openPopupAddCard);
+popupAddCardCloseButton.addEventListener('click', closePopupAddCard);
+
+function addCardSubmitHandler (evt) {
+    evt.preventDefault();
+
+    addCard(cardNameInput.value, cardLinkInput.value);
+
+    closePopupAddCard();
+} 
+
+formCardElement.addEventListener('submit', addCardSubmitHandler); 
+
+function closePopupImage(event) {
+    popupShowImageElement.classList.remove('popup_opened')
+}
+
+popupImageClose.addEventListener('click', closePopupImage);
 
 const initialCards = [
     {
@@ -134,13 +143,3 @@ const initialCards = [
 initialCards.forEach(function (element) {
     addCard(element.name, element.link);
 });
-
-function openPopupImage(event) {
-    popupShowImageElement.classList.add('popup_opened');
-    popupImage.src = event.target.src;
-    popupDescElement.textContent = event.target.alt;
-}
-
-function closePopupImage(event) {
-    popupShowImageElement.classList.remove('popup_opened')
-}
