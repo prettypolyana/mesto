@@ -4,7 +4,6 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__content/page__content.css);
 
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
@@ -47,3 +46,6 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__desc/popup__desc.css);
 @import url(../blocks/popup/_view/popup_view_show-image.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__btn/__btn-disabled/popup__btn-disabled.css);
+@import url(../blocks/popup/__input-field/popup__input-field..css);
