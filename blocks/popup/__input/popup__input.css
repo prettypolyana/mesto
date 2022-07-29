@@ -11,7 +11,3 @@
     line-height: 17px;
     color: #000;
 }
-
-.popup__input:invalid {
-    border-bottom-color: #FF0000;
-}
