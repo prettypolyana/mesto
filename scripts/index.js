@@ -24,25 +24,9 @@ const popupDescElement = document.querySelector('.popup__desc');
 const popupImage = document.querySelector('.popup__image');
 const popupImageClose = document.querySelector('.popup__close-image');
 
-function resetPopupInputValidity(popup) {
-    const popupInputElements = popup.querySelectorAll('.popup__input');
-    popupInputElements.forEach(function(popupInputElement) {
-        popupInputElement.classList.remove('popup__input_invalid');
-    });
-}
-
-function clearFormErrorMessages(popup) {
-    const popupInputErrorElements = popup.querySelectorAll('.popup__input-error');
-    popupInputErrorElements.forEach(function(popupInputErrorElement) {
-        popupInputErrorElement.textContent = '';
-    });
-}
-
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    window.addEventListener('keydown', handleWindowKeydown);
-    resetPopupInputValidity(popup);
-    clearFormErrorMessages(popup);
+    document.addEventListener('keydown', handleWindowKeydown);
 }
 
 function closePopup(popup) {
@@ -93,12 +77,8 @@ function handleFormProfileSubmit (evt) {
 
 formProfileElement.addEventListener('submit', handleFormProfileSubmit); 
 
-function resetFormAddCard() {
-    formCardElement.reset();
-}
-
 function openPopupAddCard() {
-    resetFormAddCard();
+    formCardElement.reset();
     openPopup(popupAddCardElement);
 }
 

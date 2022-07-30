@@ -12,22 +12,23 @@ const config = {
 function enableValidation(config) {
     const forms = document.querySelectorAll(config.formSelector);
     forms.forEach(function(form) {
+        const buttonElement = form.querySelector(config.submitButtonSelector);
         form.addEventListener('input', function(event) {
-            handleFormInput(event, config);
+            handleFormInput(event, buttonElement, config);
         });
+        checkButtonState(form, buttonElement, config);
     });
 }
 
-function handleFormInput(event, config) {
+function handleFormInput(event, buttonElement, config) {
     const inputElement = event.target;
     const form = event.currentTarget;
 
     checkInputError(inputElement, config);
-    checkButtonState(form, config);
+    checkButtonState(form, buttonElement, config);
 }
 
-function checkButtonState(form, config) {
-    const buttonElement = form.querySelector(config.submitButtonSelector);
+function checkButtonState(form, buttonElement, config) {
     const isValid = form.checkValidity();
     if (isValid) {
         setFormButtonEnabled(buttonElement, config);
