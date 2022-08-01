@@ -16,6 +16,7 @@ const popupAddCardCloseButton = document.querySelector('.popup__close-card');
 const popupAddCardElement = document.querySelector('.popup_view_add-card');
 const cardNameInput = formCardElement.querySelector('.popup__card-name');
 const cardLinkInput =  formCardElement.querySelector('.popup__link');
+const popupAddCardSubmitButton = formCardElement.querySelector('.popup__btn');
 
 const cardAddButton = document.querySelector('.profile__btn-plus');
 
@@ -31,7 +32,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', handleWindowKeydown);
+    document.removeEventListener('keydown', handleWindowKeydown);
 }
 
 function closeOpenedPopup() {
@@ -77,8 +78,14 @@ function handleFormProfileSubmit (evt) {
 
 formProfileElement.addEventListener('submit', handleFormProfileSubmit); 
 
+function disablePopupAddCardSubmitButton() {
+    popupAddCardSubmitButton.classList.add('popup__btn-disabled');
+    popupAddCardSubmitButton.setAttribute('disabled', 'disabled');
+}
+
 function openPopupAddCard() {
     formCardElement.reset();
+    disablePopupAddCardSubmitButton();
     openPopup(popupAddCardElement);
 }
 
