@@ -137,7 +137,7 @@ popupShowImageElement.addEventListener('click', handlePopupImageClick);
 
 const initialCards = [
     {
-      name: 'Ростов-на-дону',
+      name: 'Ростов-на-Дону',
       link: './images/Rostov-on-Don.jpg'
     },
     {
