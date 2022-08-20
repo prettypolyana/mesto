@@ -1,5 +1,6 @@
 import {Card} from './Card.js';
 import {closePopup, openPopup, closePopupImage, popupShowImageElement} from './utils.js';
+import {FormValidator} from "./FormValidator.js";
 
 const cardsConfig = {
     cardTemplateSelector: '.card-template',
@@ -9,6 +10,17 @@ const cardsConfig = {
     cardNameSelector: '.elements__name',
     likeBtnSelector: '.elements__btn',
     removeBtnSelector: '.elements__trash'
+};
+
+const validationConfig = {
+    formSelector: '.popup__content',
+    fieldsetSelector: '.popup__input-field',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__btn',
+    inactiveButtonClass: 'popup__btn-disabled',
+    inputInvalidClass: 'popup__input_invalid',
+    errorContainerClassEnd: '-error',
+    errorClass: 'popup__error_visible'
 };
 
 const formProfileElement = document.querySelector('.popup__content-profile');
@@ -112,6 +124,14 @@ function handlePopupImageClick(event) {
     }
 }
 
+function enableValidation(config) {
+    const forms = document.querySelectorAll(config.formSelector);
+    forms.forEach(function(form) {
+        const formValidator = new FormValidator(config, form);
+        formValidator.enableValidation();
+    });
+}
+
 popupImageClose.addEventListener('click', closePopupImage);
 popupShowImageElement.addEventListener('click', handlePopupImageClick);
 
@@ -145,3 +165,5 @@ const initialCards = [
 initialCards.forEach(function (element) {
     renderCard(element.name, element.link);
 });
+
+enableValidation(validationConfig);
