@@ -2,12 +2,31 @@ class FormValidator {
     constructor(config, form) {
         this._config = config;
         this._form = form;
+        this._inputList = this._form.querySelectorAll(config.inputSelector);
     }
 
     enableValidation() {
         this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
         this._addFormInputEventListener();
-        this._checkButtonState();
+        this.checkButtonState();
+    }
+
+    resetValidation() {
+        this._setFormButtonEnabled();
+
+        this._inputList.forEach((inputElement) => {
+          this._setInputElementValid(inputElement);
+          this._hideInputErrorMessage(inputElement);
+        });
+    }
+
+    checkButtonState() {
+        this._isValid = this._form.checkValidity();
+        if (this._isValid) {
+            this._setFormButtonEnabled();
+        } else {
+            this._setFormButtonDisabled();
+        }
     }
 
     _addFormInputEventListener() {
@@ -21,7 +40,7 @@ class FormValidator {
         this._form = event.currentTarget;
         
         this._checkInputError(inputElement); 
-        this._checkButtonState();
+        this.checkButtonState();
     }
 
     _checkInputError(inputElement) {
@@ -32,15 +51,6 @@ class FormValidator {
             this._setInputElementInvalid(inputElement);
             this._showInputErrorMessage(inputElement);
         };
-    }
-
-    _checkButtonState() {
-        this._isValid = this._form.checkValidity();
-        if (this._isValid) {
-            this._setFormButtonEnabled();
-        } else {
-            this._setFormButtonDisabled();
-        }
     }
 
     _setFormButtonEnabled() {

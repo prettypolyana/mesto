@@ -1,10 +1,9 @@
-import {openPopupImage} from './utils.js';
-
 class Card {
-    constructor(name, link, config) {
+    constructor(name, link, config, openPopupImage) {
         this._name = name;
         this._link = link;
         this._config = config;
+        this._openPopupImage = openPopupImage;
     }
 
     _getTemplate() {
@@ -21,7 +20,8 @@ class Card {
     }
 
     _removeCard() {
-        this._cardElement.remove();
+        this._cardElement.remove(); 
+        this._cardElement = null;
     }
 
     _addEventListeners() {
@@ -33,9 +33,9 @@ class Card {
             this._removeCard();
         });
 
-        this._cardPhotoElement.addEventListener('click', () => {
-            openPopupImage(this._name, this._link);
-        })
+        this._cardPhotoElement.addEventListener('click', () => { 
+            this._openPopupImage(this._name, this._link); 
+        });
     }
 
     createCard() {

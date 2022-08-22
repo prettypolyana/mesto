@@ -36,4 +36,4 @@ function closePopupImage() {
 }
 
 
-export {closePopup, openPopup, openPopupImage, closePopupImage, popupShowImageElement};
+export {closePopup, openPopup, openPopupImage, closePopupImage};
