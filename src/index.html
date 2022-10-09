@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link href="pages/index.css" rel="stylesheet">
 </head>
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
         </header>
         <main class="content page__content">
             <section class="profile">
                 <div class="profile__person">
-                    <img class="profile__avatar" src="./images/polyana.jpg" alt="Фото профиля">
+                    <img class="profile__avatar" src="<%=require('./images/polyana.jpg')%>" alt="Фото профиля">
                     <div class="profile__info">
                         <div class="profile__title">
                             <h1 class="profile__name">Поляна</h1>
@@ -84,6 +83,5 @@
             </div>
         </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,9 +1,18 @@
-import {Card} from './Card.js';
-import {FormValidator} from "./FormValidator.js";
-import {Section} from './Section.js';
-import {PopupWithImage} from './PopupWithImage.js';
-import {PopupWithForm} from './PopupWithForm.js';
-import {UserInfo} from './UserInfo.js';
+import './index.css';
+
+import rostovondonImage from '../images/Rostov-on-Don.jpg';
+import sudakImage from '../images/Sudak.jpg';
+import dubnaImage from '../images/Dubna.jpg';
+import zelenogradImage from '../images/Zelenograd.jpg';
+import VUImage from '../images/VU.jpg';
+import obninskImage from '../images/Obninsk.jpg';
+
+import {Card} from '../components/Card.js';
+import {FormValidator} from "../components/FormValidator.js";
+import {Section} from '../components/Section.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {UserInfo} from '../components/UserInfo.js';
 
 const cardsConfig = {
     cardTemplateSelector: '.card-template',
@@ -105,27 +114,27 @@ formCardElement.addEventListener('submit', handleFormCardSubmit);
 const initialCards = [
     {
       name: 'Ростов-на-Дону',
-      link: './images/Rostov-on-Don.jpg'
+      link: rostovondonImage,
     },
     {
       name: 'Судак',
-      link: './images/Sudak.jpg'
+      link: sudakImage,
     },
     {
       name: 'Дубна',
-      link: './images/Dubna.jpg'
+      link: dubnaImage,
     },
     {
       name: 'Зеленоград',
-      link: './images/Zelenograd.jpg'
+      link: zelenogradImage,
     },
     {
       name: 'Великий Устюг',
-      link: './images/VU.jpg'
+      link: VUImage,
     },
     {
       name: 'Обнинск',
-      link: './images/Obninsk.jpg'
+      link: obninskImage,
     }
 ];
 
