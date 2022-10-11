@@ -1,5 +1,5 @@
 class Card {
-    constructor(name, link, config, handleCardClick) {
+    constructor({name, link}, config, handleCardClick) {
         this._name = name;
         this._link = link;
         this._config = config;
@@ -55,4 +55,4 @@ class Card {
     }
 }
 
-export {Card};
+export default Card;

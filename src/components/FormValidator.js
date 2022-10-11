@@ -59,7 +59,7 @@ class FormValidator {
     }
 
     _setFormButtonDisabled() {
-        this._buttonElement.setAttribute('disabled', 'disabled');
+        this._buttonElement.setAttribute('disabled', true);
         this._buttonElement.classList.add(this._config.inactiveButtonClass);
     }
 
@@ -84,4 +84,4 @@ class FormValidator {
     }
 }
 
-export {FormValidator};
+export default FormValidator;
