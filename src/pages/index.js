@@ -93,8 +93,14 @@ function renderCard(item) {
 cardAddButton.addEventListener('click', openPopupAddCard);
 
 function handleFormCardSubmit(values) {
-    renderCard({name: values.card_name, link: values.card_link});
-    cardPopup.close();
+    api.addCard(values.card_name, values.card_link)
+        .then((result) => {
+            renderCard({name: result.name, link: result.link});
+            cardPopup.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 api.getUserInfo()
