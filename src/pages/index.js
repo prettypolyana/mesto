@@ -91,6 +91,14 @@ function handleFormCardSubmit(values) {
     cardPopup.close();
 }
 
+api.getUserInfo()
+    .then((result) => {
+        userInfo.setUserInfo(result.name, result.about);
+    })
+     .catch((err) => {
+        console.log(err);
+    });
+
 api.getInitialCards()
     .then((result) => {
         result.forEach((card) => {
@@ -101,8 +109,6 @@ api.getInitialCards()
      .catch((err) => {
         console.log(err);
     });
-
-
 
 imagePopup.setEventListeners();
 profilePopup.setEventListeners();
