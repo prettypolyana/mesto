@@ -1,5 +1,6 @@
 import './index.css';
 
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from "../components/FormValidator.js";
 import Section from '../components/Section.js';
@@ -7,7 +8,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-import {cardsConfig, validationConfig, initialCards} from '../utils/utils';
+import {cardsConfig, validationConfig} from '../utils/utils';
+
+const api = new Api({
+    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-52",
+    headers: {
+        authorization: "18fd22a9-bd6c-4b30-bd49-59a46708c9f3",
+        "Content-Type": "application/json",
+    },
+});
 
 const formProfileElement = document.querySelector('.popup__content-profile');
 const nameInput = formProfileElement.querySelector('.popup__name');
@@ -79,7 +88,15 @@ function handleFormCardSubmit(values) {
     cardPopup.close();
 }
 
-cardsSection.renderItems(initialCards);
+api.getInitialCards()
+    .then((result) => {
+        cardsSection.renderItems(result);
+    })
+     .catch((err) => {
+        console.log(err);
+    });
+
+
 
 imagePopup.setEventListeners();
 profilePopup.setEventListeners();
