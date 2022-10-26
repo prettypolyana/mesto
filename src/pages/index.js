@@ -42,7 +42,10 @@ const imagePopup = new PopupWithImage('.popup_view_show-image');
 const profilePopup = new PopupWithForm('.popup_view_profile', handleFormProfileSubmit);
 const cardPopup = new PopupWithForm('.popup_view_add-card', handleFormCardSubmit);
 
+const cards = [];
+
 const cardsSection = new Section(
+    cards,
     (item) => {
         const cardElement = createCard({name: item.name, link: item.link});
         cardsSection.addItem(cardElement);
@@ -90,7 +93,10 @@ function handleFormCardSubmit(values) {
 
 api.getInitialCards()
     .then((result) => {
-        cardsSection.renderItems(result);
+        result.forEach((card) => {
+            cards.push(card);
+        });
+        cardsSection.renderItems();
     })
      .catch((err) => {
         console.log(err);
