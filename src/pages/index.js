@@ -63,8 +63,14 @@ function openPopupProfile() {
 profileButton.addEventListener('click', openPopupProfile);
 
 function handleFormProfileSubmit (values) {
-    userInfo.setUserInfo(values.name, values.job);
-    profilePopup.close();
+    api.setUserInfo(values.name, values.job)
+        .then((result) => {
+            userInfo.setUserInfo(result.name, result.about);
+            profilePopup.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function openPopupAddCard() {
