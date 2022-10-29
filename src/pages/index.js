@@ -141,7 +141,7 @@ api.getUserInfo()
 
 api.getInitialCards()
     .then((result) => {
-        result.forEach((card) => {
+        result.reverse().forEach((card) => {
             cards.push(card);
         });
         cardsSection.renderItems();
