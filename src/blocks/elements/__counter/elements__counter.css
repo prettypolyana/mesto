@@ -1,0 +1,18 @@
+.elements__counter {
+    /* margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #000;
+    text-align: center;
+    min-height: 13px;
+    max-width: 10px; */
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    margin: 0;
+    max-height: 16px;
+    text-align: center;
+}

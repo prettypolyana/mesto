@@ -22,9 +22,14 @@ const formProfileElement = document.querySelector('.popup__content-profile');
 const nameInput = formProfileElement.querySelector('.popup__name');
 const jobInput = formProfileElement.querySelector('.popup__job');
 
+const formAvatarElement = document.querySelector('.popup__content-avatar');
+const avatarLinkInput = formAvatarElement.querySelector('.popup__avatar-link');
+
 const profileButton = document.querySelector('.profile__btn');
 const profileNameElement = document.querySelector('.profile__name');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
+const avatarButton = document.querySelector('.profile__overlay');
+const avatarElement = document.querySelector('.profile__avatar');
 
 const formCardElement = document.querySelector('.popup__content-card');
 
@@ -32,22 +37,25 @@ const cardAddButton = document.querySelector('.profile__btn-plus');
 
 const profileValidation = new FormValidator(validationConfig, formProfileElement);
 const cardValidation = new FormValidator(validationConfig, formCardElement);
+const avatarValidation = new FormValidator(validationConfig, formAvatarElement);
 
 const userInfo = new UserInfo({
     name: '.profile__name',
     job: '.profile__subtitle',
+    avatar: '.profile__avatar'
 });
 
 const imagePopup = new PopupWithImage('.popup_view_show-image');
 const profilePopup = new PopupWithForm('.popup_view_profile', handleFormProfileSubmit);
 const cardPopup = new PopupWithForm('.popup_view_add-card', handleFormCardSubmit);
+const avatarPopup = new PopupWithForm('.popup_view_edit-avatar', handleFormAvatarSubmit);
 
 const cards = [];
 
 const cardsSection = new Section(
     cards,
     (item) => {
-        const cardElement = createCard({name: item.name, link: item.link});
+        const cardElement = createCard({name: item.name, link: item.link, counter: item.likes.length, id: item._id}, false);
         cardsSection.addItem(cardElement);
     },
     '.elements__list'
@@ -73,6 +81,25 @@ function handleFormProfileSubmit (values) {
         });
 }
 
+function openAvatarPopup() {
+    avatarValidation.resetValidation();
+    avatarLinkInput.value = avatarElement.src;
+    avatarPopup.open();
+}
+
+avatarButton.addEventListener('click', openAvatarPopup);
+
+function handleFormAvatarSubmit (values) {
+    api.setAvatar(values.avatar_link)
+        .then((result) => {
+            userInfo.setAvatar(result.avatar);
+            avatarPopup.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
 function openPopupAddCard() {
     formCardElement.reset();
     cardValidation.resetValidation();
@@ -80,13 +107,13 @@ function openPopupAddCard() {
     cardPopup.open();
 }
 
-function createCard(item) {
-    const card = new Card(item, cardsConfig, (name, link) => {imagePopup.open(name, link)});
+function createCard(item, canDelete) {
+    const card = new Card(item, canDelete, api, cardsConfig, (name, link) => {imagePopup.open(name, link)});
     return card.createCard();
 }
 
-function renderCard(item) {
-    const cardElement = createCard(item);
+function renderCard(item, canDelete) {
+    const cardElement = createCard(item, canDelete);
     cardsSection.addItem(cardElement);
 }
 
@@ -95,7 +122,7 @@ cardAddButton.addEventListener('click', openPopupAddCard);
 function handleFormCardSubmit(values) {
     api.addCard(values.card_name, values.card_link)
         .then((result) => {
-            renderCard({name: result.name, link: result.link});
+            renderCard({name: result.name, link: result.link, counter: result.likes.length, id: result._id}, true);
             cardPopup.close();
         })
         .catch((err) => {
@@ -106,6 +133,7 @@ function handleFormCardSubmit(values) {
 api.getUserInfo()
     .then((result) => {
         userInfo.setUserInfo(result.name, result.about);
+        userInfo.setAvatar(result.avatar);
     })
      .catch((err) => {
         console.log(err);
@@ -125,6 +153,8 @@ api.getInitialCards()
 imagePopup.setEventListeners();
 profilePopup.setEventListeners();
 cardPopup.setEventListeners();
+avatarPopup.setEventListeners();
 
 profileValidation.enableValidation();
 cardValidation.enableValidation();  
+avatarValidation.enableValidation();

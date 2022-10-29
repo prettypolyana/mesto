@@ -13,7 +13,9 @@
         <main class="content page__content">
             <section class="profile">
                 <div class="profile__person">
-                    <img class="profile__avatar" src="<%=require('./images/polyana.jpg')%>" alt="Фото профиля">
+                    <div class="profile__overlay">
+                        <img class="profile__avatar" alt="Фото профиля">
+                    </div>
                     <div class="profile__info">
                         <div class="profile__title">
                             <h1 class="profile__name"></h1>
@@ -44,7 +46,14 @@
                         <input class="popup__input popup__job" type="text" name="job" placeholder="Введите вид деятельности" minlength="2" maxlength="200" required>
                         <span id="job-error" class="popup__input-error"></span>
                     </fieldset>
-                    <button class="popup__btn" type="submit">Сохранить</button>
+                    <button class="popup__btn" type="submit">
+                        <span class="popup__btn-text">
+                            Сохранить
+                        </span>
+                        <span class="popup__btn-text-progress">
+                            Сохранение...
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -61,7 +70,14 @@
                         <input class="popup__input popup__link" type="url" name="card_link" placeholder="Ссылка на картинку" required>
                         <span id="card_link-error" class="popup__input-error"></span>
                     </fieldset>
-                    <button class="popup__btn" type="submit">Создать</button>
+                    <button class="popup__btn" type="submit">
+                        <span class="popup__btn-text">
+                            Создать
+                        </span>
+                        <span class="popup__btn-text-progress">
+                            Сохранение...
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -71,10 +87,49 @@
                 <button class="elements__trash"></button>
                 <div class="elements__info">
                     <h2 class="elements__name"></h2>
-                    <button class="elements__btn" type="button"></button>
+                    <div class="elements__likes">
+                        <button class="elements__btn" type="button"></button>
+                        <p class="elements__counter"></p>
+                    </div>
                 </div>
             </li>
         </template>
+        <div class="popup popup_view_delete-question">
+            <div class="popup__container">
+                <button class="popup__close popup__close-question" type="button"></button>
+                <form class="popup__content popup__content-question" novalidate>
+                    <h2 class="popup__title popup__title_narrow">Вы уверены?</h2>
+                    <button class="popup__btn">
+                        <span class="popup__btn-text">
+                            Да
+                        </span>
+                        <span class="popup__btn-text-progress">
+                            Сохранение...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_view_edit-avatar">
+            <div class="popup__container">
+                <button class="popup__close popup__close-avatar" type="button"></button>
+                <form class="popup__content popup__content-avatar" novalidate>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <fieldset class="popup__input-field">
+                        <input class="popup__input popup__avatar-link" type="url" name="avatar_link" placeholder="Ссылка на картинку" required>
+                        <span id="avatar_link-error" class="popup__input-error"></span>
+                    </fieldset>
+                    <button class="popup__btn">
+                        <span class="popup__btn-text">
+                            Сохранить
+                        </span>
+                        <span class="popup__btn-text-progress">
+                            Сохранение...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
         <div class="popup popup_view_show-image">
             <div class="popup__container popup__container_image">
                 <button class="popup__close popup__close-image" type="button"></button>

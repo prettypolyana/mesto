@@ -12,7 +12,9 @@ const cardsConfig = {
     photoSelector: '.elements__photo',
     cardNameSelector: '.elements__name',
     likeBtnSelector: '.elements__btn',
-    removeBtnSelector: '.elements__trash'
+    removeBtnSelector: '.elements__trash',
+    removeBtnShownClass: 'elements__trash_shown',
+    counterSelector: '.elements__counter'
 };
 
 const validationConfig = {
