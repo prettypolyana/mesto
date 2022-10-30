@@ -17,6 +17,10 @@ export default class UserInfo {
         this._job.textContent = job;
     }
 
+    setId(id) {
+        this.id = id;
+    }
+
     setAvatar(avatar) {
         this._avatar.src = avatar;
     }

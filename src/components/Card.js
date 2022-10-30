@@ -1,15 +1,15 @@
 class Card {
-    constructor({name, link, counter, id}, canDelete, api, config, handleCardClick, questionPopup) {
+    constructor({name, link, likes, id}, canDelete, userId, api, config, handleCardClick, questionPopup) {
         this._name = name;
         this._link = link;
-        this._counter = counter;
         this._id = id;
         this._canDelete = canDelete;
+        this._userId = userId;
         this._api = api;
         this._config = config;
         this._handleCardClick = handleCardClick;
-        this._liked = false;
         this._questionPopup = questionPopup;
+        this._setLikes(likes);
     }
 
     _getTemplate() {
@@ -24,31 +24,41 @@ class Card {
     _changeLike() {
         if (this._liked) {
             this._api.removeLike(this._id)
-                .then((result) => {
-                    this._counter = result.likes.length;
-                    this._updateCounter();
-                    this._likeBtnElement.classList.remove(this._config.likeBtnActive);
-                    this._liked = false;
-                })
+                .then((result) => {this._handleServerLikes(result)})
                 .catch((err) => {
                     console.log(err);
                 });
         } else {
             this._api.addLike(this._id)
-                .then((result) => {
-                    this._counter = result.likes.length;
-                    this._updateCounter();
-                    this._likeBtnElement.classList.add(this._config.likeBtnActive);
-                    this._liked = true;
-                })
+                .then((result) => {this._handleServerLikes(result)})
                 .catch((err) => {
                     console.log(err);
                 });
         }
     }
 
-    _updateCounter() {
-        this._counterElement.textContent = this._counter;
+    _handleServerLikes(result) {
+        this._setLikes(result.likes);
+        this._updateLikeState();
+    }
+
+    _setLikes(likes) {
+        this._likes = likes;
+        this._liked = false;
+        this._likes.forEach((like) => {
+            if (like._id === this._userId) {
+                this._liked = true;
+            }
+        });
+    }
+
+    _updateLikeState() {
+        if (this._liked) {
+            this._likeBtnElement.classList.add(this._config.likeBtnActive);
+        } else {
+            this._likeBtnElement.classList.remove(this._config.likeBtnActive);
+        }
+        this._counterElement.textContent = this._likes.length;
     }
 
     _askRemoveCard() {
@@ -104,7 +114,7 @@ class Card {
         this._cardPhotoElement.alt = this._name;
         this._cardNameElement.textContent = this._name;
 
-        this._updateCounter();
+        this._updateLikeState();
 
         this._addEventListeners();
 
