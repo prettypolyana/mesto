@@ -1,9 +1,9 @@
 class Card {
-    constructor({name, link, likes, id}, canDelete, userId, api, config, handleCardClick, questionPopup) {
+    constructor({name, link, likes, id, ownerId}, userId, api, config, handleCardClick, questionPopup) {
         this._name = name;
         this._link = link;
         this._id = id;
-        this._canDelete = canDelete;
+        this._canDelete = ownerId === userId;
         this._userId = userId;
         this._api = api;
         this._config = config;

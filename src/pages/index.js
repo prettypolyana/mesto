@@ -8,7 +8,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-import {cardsConfig, validationConfig} from '../utils/utils';
+import {cardsConfig, validationConfig} from '../utils/constants.js';
 
 const api = new Api({
     baseUrl: "https://mesto.nomoreparties.co/v1/cohort-52",
@@ -60,8 +60,9 @@ const cardsSection = new Section(
             name: item.name,
             link: item.link,
             likes: item.likes,
-            id: item._id
-        }, false);
+            id: item._id,
+            ownerId: item.owner._id
+        });
         cardsSection.addItem(cardElement);
     },
     '.elements__list'
@@ -113,13 +114,13 @@ function openPopupAddCard() {
     cardPopup.open();
 }
 
-function createCard(item, canDelete) {
-    const card = new Card(item, canDelete, userInfo.id, api, cardsConfig, (name, link) => {imagePopup.open(name, link)}, questionPopup);
+function createCard(item) {
+    const card = new Card(item, userInfo.id, api, cardsConfig, (name, link) => {imagePopup.open(name, link)}, questionPopup);
     return card.createCard();
 }
 
-function renderCard(item, canDelete) {
-    const cardElement = createCard(item, canDelete);
+function renderCard(item) {
+    const cardElement = createCard(item);
     cardsSection.addItem(cardElement);
 }
 
@@ -132,8 +133,9 @@ function handleFormCardSubmit(values) {
                 name: result.name,
                 link: result.link,
                 likes: result.likes,
-                id: result._id
-            }, true);
+                id: result._id,
+                ownerId: result.owner._id
+            });
             cardPopup.close();
         })
         .catch((err) => {
