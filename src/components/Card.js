@@ -1,7 +1,5 @@
-import PopupWithForm from "./PopupWithForm.js";
-
 class Card {
-    constructor({name, link, counter, id}, canDelete, api, config, handleCardClick) {
+    constructor({name, link, counter, id}, canDelete, api, config, handleCardClick, questionPopup) {
         this._name = name;
         this._link = link;
         this._counter = counter;
@@ -11,6 +9,7 @@ class Card {
         this._config = config;
         this._handleCardClick = handleCardClick;
         this._liked = false;
+        this._questionPopup = questionPopup;
     }
 
     _getTemplate() {
@@ -53,10 +52,9 @@ class Card {
     }
 
     _askRemoveCard() {
-        this._questionPopup = new PopupWithForm('.popup_view_delete-question', () => {
+        this._questionPopup.setSubmitHandler(() => {
             this._removeCard();
         });
-        this._questionPopup.setEventListeners();
         this._questionPopup.open();
     }
 

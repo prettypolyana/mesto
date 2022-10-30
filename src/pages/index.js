@@ -49,6 +49,7 @@ const imagePopup = new PopupWithImage('.popup_view_show-image');
 const profilePopup = new PopupWithForm('.popup_view_profile', handleFormProfileSubmit);
 const cardPopup = new PopupWithForm('.popup_view_add-card', handleFormCardSubmit);
 const avatarPopup = new PopupWithForm('.popup_view_edit-avatar', handleFormAvatarSubmit);
+const questionPopup = new PopupWithForm('.popup_view_delete-question', () => {});
 
 const cards = [];
 
@@ -108,7 +109,7 @@ function openPopupAddCard() {
 }
 
 function createCard(item, canDelete) {
-    const card = new Card(item, canDelete, api, cardsConfig, (name, link) => {imagePopup.open(name, link)});
+    const card = new Card(item, canDelete, api, cardsConfig, (name, link) => {imagePopup.open(name, link)}, questionPopup);
     return card.createCard();
 }
 
@@ -154,6 +155,7 @@ imagePopup.setEventListeners();
 profilePopup.setEventListeners();
 cardPopup.setEventListeners();
 avatarPopup.setEventListeners();
+questionPopup.setEventListeners();
 
 profileValidation.enableValidation();
 cardValidation.enableValidation();  
