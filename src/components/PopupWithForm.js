@@ -7,8 +7,6 @@ export default class PopupWithForm extends Popup {
 
         this._form = this._popup.querySelector('form');
         this._inputs = this._form.querySelectorAll('.popup__input');
-        // this._btnTextElement = this._popup.querySelector('.popup__btn-text');
-        // this._btnTextProgressElement = this._popup.querySelector('.popup__btn-text-progress');
         this._btnElement = this._form.querySelector('.popup__btn');
         this._btnText = this._btnElement.textContent;
     }
@@ -31,21 +29,10 @@ export default class PopupWithForm extends Popup {
         }
     }
 
-    // _setFormInProgress() {
-    //     this._btnTextElement.classList.add('popup__btn-text_in-progress');
-    //     this._btnTextProgressElement.classList.add('popup__btn-text-progress_in-progress');
-    // }
-
-    // _unsetFormInProgress() {
-    //     this._btnTextElement.classList.remove('popup__btn-text_in-progress');
-    //     this._btnTextProgressElement.classList.remove('popup__btn-text-progress_in-progress');
-    // }
-
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
-            // this._setFormInProgress();
             this._formSubmitHandler(this._getInputValues());
         });
     }

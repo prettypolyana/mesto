@@ -53,8 +53,5 @@
 @import url(../blocks/popup/_view/popup_view_show-image.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__btn/__btn-disabled/popup__btn-disabled.css);
-@import url(../blocks/popup/__btn-text-progress/popup__btn-text-progress.css);
-@import url(../blocks/popup/__btn-text/_in-progress/popup__btn-text_in-progress.css);
-@import url(../blocks/popup/__btn-text-progress/_in-progress/popup__btn-text-progress_in-progress.css);
-@import url(../blocks/popup/__input-field/popup__input-field..css);
+@import url(../blocks/popup/__input-field/popup__input-field.css);
 @import url(../blocks/popup/__input/_invalid/popup__input_invalid.css);
