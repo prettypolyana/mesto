@@ -36,7 +36,7 @@
         <div class="popup popup_view_profile">
             <div class="popup__container">
                 <button class="popup__close popup__close-profile" type="button"></button>
-                <form class="popup__content popup__content-profile" novalidate>
+                <form class="popup__content popup__content-profile" novalidate name="edit-profile">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <fieldset class="popup__input-field">
                         <input class="popup__input popup__name" type="text" name="name" placeholder="Введите имя" minlength="2" maxlength="40" required>
@@ -46,21 +46,14 @@
                         <input class="popup__input popup__job" type="text" name="job" placeholder="Введите вид деятельности" minlength="2" maxlength="200" required>
                         <span id="job-error" class="popup__input-error"></span>
                     </fieldset>
-                    <button class="popup__btn" type="submit">
-                        <span class="popup__btn-text">
-                            Сохранить
-                        </span>
-                        <span class="popup__btn-text-progress">
-                            Сохранение...
-                        </span>
-                    </button>
+                    <button class="popup__btn" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
         <div class="popup popup_view_add-card">
             <div class="popup__container">
                 <button class="popup__close popup__close-card" type="button"></button>
-                <form class="popup__content popup__content-card" novalidate>
+                <form class="popup__content popup__content-card" novalidate name="add-card">
                     <h2 class="popup__title">Новое место</h2>
                     <fieldset class="popup__input-field">
                         <input class="popup__input popup__card-name" type="text" name="card_name" placeholder="Название" minlength="2" maxlength="30" required>
@@ -70,14 +63,7 @@
                         <input class="popup__input popup__link" type="url" name="card_link" placeholder="Ссылка на картинку" required>
                         <span id="card_link-error" class="popup__input-error"></span>
                     </fieldset>
-                    <button class="popup__btn" type="submit">
-                        <span class="popup__btn-text">
-                            Создать
-                        </span>
-                        <span class="popup__btn-text-progress">
-                            Сохранение...
-                        </span>
-                    </button>
+                    <button class="popup__btn" type="submit">Создать</button>
                 </form>
             </div>
         </div>
@@ -97,36 +83,22 @@
         <div class="popup popup_view_delete-question">
             <div class="popup__container">
                 <button class="popup__close popup__close-question" type="button"></button>
-                <form class="popup__content popup__content-question" novalidate>
+                <form class="popup__content popup__content-question" novalidate class="question-popup">
                     <h2 class="popup__title popup__title_narrow">Вы уверены?</h2>
-                    <button class="popup__btn">
-                        <span class="popup__btn-text">
-                            Да
-                        </span>
-                        <span class="popup__btn-text-progress">
-                            Сохранение...
-                        </span>
-                    </button>
+                    <button class="popup__btn">Да</button>
                 </form>
             </div>
         </div>
         <div class="popup popup_view_edit-avatar">
             <div class="popup__container">
                 <button class="popup__close popup__close-avatar" type="button"></button>
-                <form class="popup__content popup__content-avatar" novalidate>
+                <form class="popup__content popup__content-avatar" novalidate name="edit-avatar">
                     <h2 class="popup__title">Обновить аватар</h2>
                     <fieldset class="popup__input-field">
                         <input class="popup__input popup__avatar-link" type="url" name="avatar_link" placeholder="Ссылка на картинку" required>
                         <span id="avatar_link-error" class="popup__input-error"></span>
                     </fieldset>
-                    <button class="popup__btn">
-                        <span class="popup__btn-text">
-                            Сохранить
-                        </span>
-                        <span class="popup__btn-text-progress">
-                            Сохранение...
-                        </span>
-                    </button>
+                    <button class="popup__btn">Сохранить</button>
                 </form>
             </div>
         </div>

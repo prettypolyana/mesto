@@ -1,5 +1,5 @@
 class Card {
-    constructor({name, link, likes, id, ownerId}, userId, api, config, handleCardClick, questionPopup) {
+    constructor({name, link, likes, id, ownerId}, userId, api, config, handleCardClick, handleLikeClick, handleRemoveClick) {
         this._name = name;
         this._link = link;
         this._id = id;
@@ -8,7 +8,8 @@ class Card {
         this._api = api;
         this._config = config;
         this._handleCardClick = handleCardClick;
-        this._questionPopup = questionPopup;
+        this._handleLikeClick = handleLikeClick;
+        this._handleRemoveClick = handleRemoveClick;
         this._setLikes(likes);
     }
 
@@ -21,27 +22,6 @@ class Card {
         return cardElement;
     }
 
-    _changeLike() {
-        if (this._liked) {
-            this._api.removeLike(this._id)
-                .then((result) => {this._handleServerLikes(result)})
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            this._api.addLike(this._id)
-                .then((result) => {this._handleServerLikes(result)})
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    }
-
-    _handleServerLikes(result) {
-        this._setLikes(result.likes);
-        this._updateLikeState();
-    }
-
     _setLikes(likes) {
         this._likes = likes;
         this._liked = false;
@@ -50,6 +30,11 @@ class Card {
                 this._liked = true;
             }
         });
+    }
+
+    updateLikes(likes) {
+        this._setLikes(likes);
+        this._updateLikeState();
     }
 
     _updateLikeState() {
@@ -61,23 +46,19 @@ class Card {
         this._counterElement.textContent = this._likes.length;
     }
 
-    _askRemoveCard() {
-        this._questionPopup.setSubmitHandler(() => {
-            this._removeCard();
-        });
-        this._questionPopup.open();
+    getId() {
+        return this._id;
     }
 
-    _closeQuestionPopup() {
-        this._questionPopup.close();
+    isLiked() {
+        return this._liked;
     }
 
-    _removeCard() {
+    removeCard() {
         this._api.removeCard(this._id)
             .then(() => {
                 this._cardElement.remove(); 
                 this._cardElement = null;
-                this._closeQuestionPopup();
             })
             .catch((err) => {
                 console.log(err);
@@ -86,11 +67,11 @@ class Card {
 
     _addEventListeners() {
         this._likeBtnElement.addEventListener('click', () => {
-            this._changeLike();
+            this._handleLikeClick(this);
         });
 
         this._removeBtnElement.addEventListener('click', () => {
-            this._askRemoveCard();
+            this._handleRemoveClick(this);
         });
 
         this._cardPhotoElement.addEventListener('click', () => { 

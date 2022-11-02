@@ -3,16 +3,16 @@ class FormValidator {
         this._config = config;
         this._form = form;
         this._inputList = this._form.querySelectorAll(config.inputSelector);
+        this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
     }
 
     enableValidation() {
-        this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
         this._addFormInputEventListener();
         this.checkButtonState();
     }
 
     resetValidation() {
-        this._setFormButtonEnabled();
+        this.checkButtonState();
 
         this._inputList.forEach((inputElement) => {
           this._setInputElementValid(inputElement);

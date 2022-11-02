@@ -9,19 +9,14 @@ export default class UserInfo {
         return {
             name: this._name.textContent,
             job: this._job.textContent,
+            avatar: this._avatar.src,
         };
     }
 
-    setUserInfo(name, job) {
+    setUserInfo({name, about, avatar, _id}) {
         this._name.textContent = name;
-        this._job.textContent = job;
-    }
-
-    setId(id) {
-        this.id = id;
-    }
-
-    setAvatar(avatar) {
+        this._job.textContent = about;
+        this.id = _id;
         this._avatar.src = avatar;
     }
 }
