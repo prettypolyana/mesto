@@ -45,9 +45,6 @@
 .popup_view_show-image{background-color:rgba(0,0,0,.9)}
 .popup__input-error{color:red;display:block;font-family:Inter,sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:5px 0 0;min-height:30px;padding:0}
 .popup__btn-disabled{background-color:#fff;border:1px solid #000;color:#000;cursor:default;opacity:.2}.popup__btn-disabled:hover{opacity:.2}
-.popup__btn-text-progress{display:none}
-.popup__btn-text_in-progress{display:none}
-.popup__btn-text-progress_in-progress{display:inline}
 .popup__input-field{border:none;margin:0;padding:0}
 .popup__input_invalid{border-bottom-color:red}
 
